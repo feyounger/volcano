@@ -290,6 +290,7 @@ func (cc *jobcontroller) Run(stopCh <-chan struct{}) {
 
 	go wait.Until(cc.handleCommands, 0, stopCh)
 	var i uint32
+	//开启三个工作进程处理请求
 	for i = 0; i < cc.workers; i++ {
 		go func(num uint32) {
 			wait.Until(
